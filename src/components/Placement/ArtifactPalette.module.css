@@ -100,3 +100,68 @@
   color: var(--color-valid);
   opacity: 1;
 }
+
+/* ── Mobile emoji pill row ── */
+.paletteMobile {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  /* Hide desktop card list */
+  .palette {
+    display: none;
+  }
+
+  /* Show mobile pill row */
+  .paletteMobile {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  .mobilePill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 4px;
+    border-radius: var(--border-radius-lg);
+    border: 1.5px solid var(--color-border);
+    background: rgba(44, 24, 16, 0.5);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .mobilePill:hover:not(:disabled) {
+    border-color: var(--color-bronze);
+    background: rgba(139, 69, 19, 0.3);
+  }
+
+  .mobilePillActive {
+    border-color: var(--color-select) !important;
+    background: rgba(230, 168, 23, 0.15) !important;
+    box-shadow: 0 0 0 2px var(--color-select-glow);
+  }
+
+  .mobilePillPlaced {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .mobileEmoji {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .mobileCount {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-sand-mid);
+    line-height: 1;
+  }
+
+  .mobilePillActive .mobileCount {
+    color: var(--color-select);
+  }
+}

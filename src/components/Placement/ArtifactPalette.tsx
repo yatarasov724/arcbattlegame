@@ -14,13 +14,10 @@ const ICON_COLOR = '#8a6a3a';
 const ICON_SW = 5;
 
 function FossilIcon({ svgKey, size }: { svgKey: string; size: number }) {
-  // Natural aspect ratio: size:1 (horizontal). Cap width so icon fits the card.
   const rawW = size * ICON_H;
   const maxW = 56;
   const iconW = Math.min(rawW, maxW);
   const iconH = ICON_H;
-
-  // ViewBox matches natural proportions so the shape isn't distorted
   const vbW = size * 100;
   const vbH = 100;
 
@@ -44,45 +41,79 @@ export function ArtifactPalette({ board, placingConfigKey, onSelectArtifact }: A
   }
 
   return (
-    <div className={styles.palette}>
-      <div className={styles.paletteTitle}>Ваши ископаемые</div>
+    <>
+      {/* Desktop: vertical SVG card list */}
+      <div className={styles.palette}>
+        <div className={styles.paletteTitle}>Ваши ископаемые</div>
 
-      {FLEET.map(({ configKey, count }) => {
-        const cfg = ARTIFACT_CONFIGS[configKey];
-        const placed = placedCounts[configKey] ?? 0;
-        const remaining = count - placed;
-        const isFullyPlaced = remaining === 0;
-        const isPlacing = placingConfigKey === configKey;
+        {FLEET.map(({ configKey, count }) => {
+          const cfg = ARTIFACT_CONFIGS[configKey];
+          const placed = placedCounts[configKey] ?? 0;
+          const remaining = count - placed;
+          const isFullyPlaced = remaining === 0;
+          const isPlacing = placingConfigKey === configKey;
 
-        return (
-          <button
-            key={configKey}
-            className={[
-              styles.artifactCard,
-              isFullyPlaced ? styles.placed : '',
-              isPlacing ? styles.placing : '',
-            ].join(' ')}
-            onClick={() => !isFullyPlaced && onSelectArtifact(configKey)}
-            title={cfg.description}
-            type="button"
-          >
-            <div className={styles.iconWrap}>
-              <FossilIcon svgKey={cfg.svgKey} size={cfg.size} />
-            </div>
-            <div className={styles.info}>
-              <div className={styles.name}>{cfg.name}</div>
-              <div className={styles.sizeBlocks}>
-                {Array.from({ length: cfg.size }, (_, i) => (
-                  <div key={i} className={styles.sizeBlock} />
-                ))}
+          return (
+            <button
+              key={configKey}
+              className={[
+                styles.artifactCard,
+                isFullyPlaced ? styles.placed : '',
+                isPlacing ? styles.placing : '',
+              ].join(' ')}
+              onClick={() => !isFullyPlaced && onSelectArtifact(configKey)}
+              title={cfg.description}
+              type="button"
+            >
+              <div className={styles.iconWrap}>
+                <FossilIcon svgKey={cfg.svgKey} size={cfg.size} />
               </div>
-            </div>
-            <span className={`${styles.count} ${placed > 0 ? styles.countPlaced : ''}`}>
-              {placed}/{count}
-            </span>
-          </button>
-        );
-      })}
-    </div>
+              <div className={styles.info}>
+                <div className={styles.name}>{cfg.name}</div>
+                <div className={styles.sizeBlocks}>
+                  {Array.from({ length: cfg.size }, (_, i) => (
+                    <div key={i} className={styles.sizeBlock} />
+                  ))}
+                </div>
+              </div>
+              <span className={`${styles.count} ${placed > 0 ? styles.countPlaced : ''}`}>
+                {placed}/{count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Mobile: horizontal emoji pill grid */}
+      <div className={styles.paletteMobile}>
+        {FLEET.map(({ configKey, count }) => {
+          const cfg = ARTIFACT_CONFIGS[configKey];
+          const placed = placedCounts[configKey] ?? 0;
+          const remaining = count - placed;
+          const isFullyPlaced = remaining === 0;
+          const isPlacing = placingConfigKey === configKey;
+
+          return (
+            <button
+              key={configKey}
+              className={[
+                styles.mobilePill,
+                isFullyPlaced ? styles.mobilePillPlaced : '',
+                isPlacing ? styles.mobilePillActive : '',
+              ].join(' ')}
+              onClick={() => !isFullyPlaced && onSelectArtifact(configKey)}
+              disabled={isFullyPlaced}
+              title={cfg.description}
+              type="button"
+            >
+              <span className={styles.mobileEmoji}>{cfg.emoji}</span>
+              <span className={styles.mobileCount}>
+                {isFullyPlaced ? '✓' : `×${remaining}`}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </>
   );
 }
