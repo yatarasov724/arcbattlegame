@@ -113,3 +113,15 @@
   pointer-events: none;
   z-index: 2;
 }
+
+@media (max-width: 640px) {
+  .headerRow {
+    display: none;
+  }
+  .rowLabel {
+    display: none;
+  }
+  .cell {
+    touch-action: manipulation;
+  }
+}

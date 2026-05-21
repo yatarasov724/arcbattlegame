@@ -195,3 +195,10 @@
 .movesInfo span {
   font-size: 1rem;
 }
+
+@media (max-width: 640px) {
+  .screen {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+}

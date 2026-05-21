@@ -90,3 +90,12 @@
   position: absolute;
   display: block;
 }
+
+@media (max-width: 640px) {
+  .headerRow {
+    display: none;
+  }
+  .rowLabel {
+    display: none;
+  }
+}
