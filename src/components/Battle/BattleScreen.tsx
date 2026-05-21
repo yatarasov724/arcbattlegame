@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useGame } from '../../store/useGame';
 import { GameGrid } from './Grid/GameGrid';
 import { HUD } from './HUD/HUD';
@@ -11,13 +12,24 @@ export function BattleScreen() {
   const { state, dispatch, digCell, moveSelectedArtifact } = useGame();
   const log = state.log;
 
-  // Movable artifact IDs: own artifacts that aren't sunk (only in move mode)
+  const [activeTab, setActiveTab] = useState<'human' | 'ai'>('ai');
+
+  // Auto-switch tabs when turn or action mode changes
+  useEffect(() => {
+    if (state.turn === 'ai') {
+      setActiveTab('human');
+    } else if (state.actionMode === 'move') {
+      setActiveTab('human');
+    } else if (state.turn === 'human' && state.actionMode === 'dig') {
+      setActiveTab('ai');
+    }
+  }, [state.turn, state.actionMode]);
+
   const movableArtifactIds =
     state.actionMode === 'move'
       ? new Set(state.humanBoard.artifacts.filter((a) => !a.isSunk).map((a) => a.id))
       : new Set<string>();
 
-  // Ghost artifact outlines at each valid move destination
   const validMoveGhosts: GhostArtifact[] = [];
   if (state.selectedArtifactId && state.actionMode === 'move') {
     for (const dir of ['up', 'down', 'left', 'right'] as const) {
@@ -61,9 +73,27 @@ export function BattleScreen() {
 
       <HUD state={state} />
 
+      {/* Tab bar — only visible on mobile (≤640px) */}
+      <div className={styles.tabBar}>
+        <button
+          className={`${styles.tabBtn} ${activeTab === 'human' ? styles.tabBtnActive : ''}`}
+          onClick={() => setActiveTab('human')}
+          type="button"
+        >
+          📍 Моё поле
+        </button>
+        <button
+          className={`${styles.tabBtn} ${activeTab === 'ai' ? styles.tabBtnActive : ''}`}
+          onClick={() => setActiveTab('ai')}
+          type="button"
+        >
+          ⚔️ Противник
+        </button>
+      </div>
+
       <div className={styles.main}>
         {/* Own board */}
-        <div className={styles.gridSection}>
+        <div className={`${styles.gridSection} ${activeTab !== 'human' ? styles.gridHidden : ''}`}>
           <GameGrid
             board={state.humanBoard}
             isOwn
@@ -110,7 +140,7 @@ export function BattleScreen() {
         </div>
 
         {/* Enemy board */}
-        <div className={styles.gridSection}>
+        <div className={`${styles.gridSection} ${activeTab !== 'ai' ? styles.gridHidden : ''}`}>
           <GameGrid
             board={state.aiBoard}
             isOwn={false}
