@@ -75,6 +75,13 @@
   }
 }
 
+@media (max-width: 640px) {
+  :root {
+    --cell-size: 34px;
+    --cell-size-sm: 22px;
+  }
+}
+
 @media (max-width: 480px) {
   :root {
     --cell-size: 26px;
