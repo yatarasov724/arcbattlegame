@@ -118,13 +118,22 @@ export function PlacementScreen() {
       </div>
 
       <div className={styles.main}>
-        <PlacementGrid
-          board={state.humanBoard}
-          placingConfigKey={placingConfigKey}
-          placingOrientation={orientation}
-          onPlaceArtifact={handlePlaceArtifact}
-          onRemoveArtifact={handleRemoveArtifact}
-        />
+        <div className={styles.gridWrapper}>
+          <button
+            className={styles.orientationBtnMobile}
+            onClick={() => setOrientation((o) => (o === 'horizontal' ? 'vertical' : 'horizontal'))}
+            type="button"
+          >
+            {orientation === 'horizontal' ? '↔ Горизонталь' : '↕ Вертикаль'}
+          </button>
+          <PlacementGrid
+            board={state.humanBoard}
+            placingConfigKey={placingConfigKey}
+            placingOrientation={orientation}
+            onPlaceArtifact={handlePlaceArtifact}
+            onRemoveArtifact={handleRemoveArtifact}
+          />
+        </div>
         <ArtifactPalette
           board={state.humanBoard}
           placingConfigKey={placingConfigKey}
