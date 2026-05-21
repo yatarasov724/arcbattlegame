@@ -1,0 +1,77 @@
+<h2>Раскладка экрана битвы на мобильном</h2>
+<p class="subtitle">Самая сложная часть: на телефоне нет места для двух сеток рядом. Как их показывать?</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="tabs" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 16px; background: #1a0f08; border-radius: 6px; font-family: monospace; font-size: 12px; color: #d4b483;">
+      <div style="display: flex; border-bottom: 1px solid #7a5c30; margin-bottom: 10px;">
+        <div style="padding: 6px 16px; background: #cd7f32; color: #1a0f08; font-weight: bold; border-radius: 4px 4px 0 0; font-size: 11px;">📍 МОЁ ПОЛЕ</div>
+        <div style="padding: 6px 16px; color: #7a5c30; font-size: 11px;">⚔️ ПРОТИВНИК</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 8px;">
+        ${Array.from({length: 49}, (_, i) => `<div style="background: #2c1810; border: 1px solid #7a5c30; height: 26px; border-radius: 2px;"></div>`).join('')}
+      </div>
+      <div style="background: #2c1810; border: 1px solid #7a5c30; border-radius: 6px; padding: 8px; font-size: 10px; color: #a08050;">
+        🗡️ Ваш ход &nbsp; ⛏️ Копать &nbsp; 📜 Переместить
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>А — Вкладки</h3>
+      <p>Переключатель «Моё поле / Поле противника» вверху. Одна сетка занимает весь экран.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Плюсы</h4><ul><li>Максимальный размер клеток</li><li>Простой UX</li></ul></div>
+        <div class="cons"><h4>Минусы</h4><ul><li>Не видно оба поля одновременно</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="stack" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 16px; background: #1a0f08; border-radius: 6px; font-family: monospace; font-size: 12px; color: #d4b483;">
+      <div style="font-size: 10px; color: #7a5c30; text-align: center; margin-bottom: 4px;">ПОЛЕ ПРОТИВНИКА ↑ прокрутка</div>
+      <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 6px;">
+        ${Array.from({length: 35}, (_, i) => `<div style="background: #2c1810; border: 1px solid #7a5c30; height: 20px; border-radius: 2px;"></div>`).join('')}
+      </div>
+      <div style="background: #2c1810; border: 1px solid #7a5c30; border-radius: 4px; padding: 5px; font-size: 10px; color: #a08050; text-align: center; margin-bottom: 6px;">
+        🗡️ Ваш ход &nbsp; ⛏️ Копать &nbsp; 📜 Переместить
+      </div>
+      <div style="font-size: 10px; color: #7a5c30; text-align: center; margin-bottom: 4px;">МОЁ ПОЛЕ ↓</div>
+      <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;">
+        ${Array.from({length: 35}, (_, i) => `<div style="background: #1e0f08; border: 1px solid #4a3020; height: 20px; border-radius: 2px;"></div>`).join('')}
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Б — Вертикальный стек</h3>
+      <p>Оба поля друг под другом, панель управления между ними. Страница скроллится.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Плюсы</h4><ul><li>Видны оба поля</li><li>Привычная прокрутка</li></ul></div>
+        <div class="cons"><h4>Минусы</h4><ul><li>Клетки меньше</li><li>Надо скроллить</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="swipe" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 16px; background: #1a0f08; border-radius: 6px; font-family: monospace; font-size: 12px; color: #d4b483;">
+      <div style="display: flex; justify-content: center; gap: 4px; margin-bottom: 8px;">
+        <div style="width: 32px; height: 4px; background: #cd7f32; border-radius: 2px;"></div>
+        <div style="width: 32px; height: 4px; background: #4a3020; border-radius: 2px;"></div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 8px;">
+        ${Array.from({length: 49}, (_, i) => `<div style="background: #2c1810; border: 1px solid #7a5c30; height: 26px; border-radius: 2px;"></div>`).join('')}
+      </div>
+      <div style="text-align: center; font-size: 10px; color: #7a5c30;">← свайп →</div>
+      <div style="background: #2c1810; border: 1px solid #7a5c30; border-radius: 6px; padding: 8px; font-size: 10px; color: #a08050; margin-top: 6px; text-align: center;">
+        ⛏️ Копать &nbsp; 📜 Переместить
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>В — Свайп между полями</h3>
+      <p>Горизонтальный свайп переключает между полями. Активное поле занимает весь экран.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Плюсы</h4><ul><li>Максимальный размер клеток</li><li>Жестовое управление</li></ul></div>
+        <div class="cons"><h4>Минусы</h4><ul><li>Сложнее реализовать</li><li>Свайп может конфликтовать с диагональным жестом прокрутки</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,237 @@
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  position: relative;
+  cursor: pointer;
+  border-radius: 2px;
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  flex-shrink: 0;
+}
+
+/* Sand base texture */
+.cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 60%),
+    linear-gradient(135deg, var(--color-sand-light) 0%, var(--color-sand-mid) 100%);
+  z-index: 0;
+}
+
+/* Grid lines */
+.cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(160, 128, 80, 0.25);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cell:hover {
+  transform: scale(1.04);
+  z-index: 2;
+  box-shadow: 0 0 0 2px var(--color-bronze), var(--shadow-sm);
+}
+
+.cell:hover::after {
+  border-color: var(--color-bronze);
+}
+
+/* ── States ── */
+
+.hidden {
+  background: linear-gradient(135deg, var(--color-sand-light) 0%, var(--color-sand-mid) 100%);
+}
+
+.miss {
+  background: linear-gradient(135deg, #c8d8e0 0%, var(--color-miss) 100%);
+  cursor: default;
+}
+
+.miss::before {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.15) 0%, transparent 70%),
+    linear-gradient(135deg, #c8d8e0 0%, var(--color-miss) 100%);
+}
+
+.hit {
+  background: linear-gradient(135deg, #d4b483 0%, #a07040 100%);
+  cursor: default;
+}
+
+/* Buffer zone — safe cells around a fully excavated fossil */
+.buffer {
+  background: linear-gradient(135deg, #b8c8c8 0%, #8aa0a0 100%);
+  cursor: default;
+  opacity: 0.7;
+}
+
+.buffer::before {
+  background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 70%),
+    linear-gradient(135deg, #b8c8c8 0%, #8aa0a0 100%);
+}
+
+.sunk {
+  background: linear-gradient(135deg, #6a3a1a 0%, #3a1a08 100%);
+  cursor: default;
+  animation: artifactGlow 2.5s ease-in-out infinite;
+}
+
+/* ── Non-interactive (no hover effects) ── */
+
+.nonInteractive {
+  cursor: default;
+}
+
+.nonInteractive:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.nonInteractive:hover::after {
+  border-color: rgba(160, 128, 80, 0.25);
+}
+
+/* ── Ownership variants ── */
+
+.own {
+  cursor: default;
+}
+
+.own:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.own:hover::after {
+  border-color: rgba(160, 128, 80, 0.25);
+}
+
+.ownMovable {
+  cursor: pointer;
+}
+
+.ownMovable:hover {
+  box-shadow: 0 0 0 2px var(--color-select), var(--shadow-sm);
+}
+
+.ownMovable:hover::after {
+  border-color: var(--color-select);
+}
+
+.selected {
+  animation: selectPulse 1.2s ease-in-out infinite;
+  z-index: 3;
+  cursor: default;
+}
+
+/* ── Fossil layer ── */
+
+.fossilLayer {
+  position: absolute;
+  inset: 1px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Own board: fossil always visible but dimmed when not yet hit */
+.fossilOwn {
+  opacity: 0.45;
+  filter: sepia(0.4) brightness(0.85);
+}
+
+/* ── Hit marker (cross / crack) ── */
+
+.marker {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.markerMiss {
+  font-size: calc(var(--cell-size) * 0.38);
+  opacity: 0.6;
+  color: var(--color-miss);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+.markerHit {
+  font-size: calc(var(--cell-size) * 0.38);
+  color: var(--color-hit);
+  filter: drop-shadow(0 0 4px var(--color-hit-glow));
+  animation: sandReveal 0.4s ease-out;
+}
+
+.markerSunk {
+  font-size: calc(var(--cell-size) * 0.32);
+  color: #f0c040;
+  filter: drop-shadow(0 0 6px rgba(240, 192, 64, 0.7));
+}
+
+.markerBuffer {
+  font-size: calc(var(--cell-size) * 0.5);
+  color: var(--color-teal-dark);
+  opacity: 0.6;
+}
+
+/* ── Dig animation overlay ── */
+
+.digOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.dustParticle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-sand-mid);
+  animation: dustPuff 0.5s ease-out forwards;
+}
+
+/* ── Coordinate labels ── */
+
+.colLabel {
+  position: absolute;
+  top: 1px;
+  left: 3px;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  color: var(--color-sand-dark);
+  opacity: 0.5;
+  z-index: 4;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Curse glyph (AI fully sunk your artifact) ── */
+
+.curseGlyph {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 10px;
+  z-index: 5;
+  opacity: 0.8;
+  animation: fadeSlideIn 0.4s ease;
+  pointer-events: none;
+}
+
+/* Valid move destination highlight */
+.validMove {
+  box-shadow: inset 0 0 0 2px var(--color-select), 0 0 8px rgba(205, 127, 50, 0.4);
+  background: linear-gradient(135deg, var(--color-sand-light) 0%, var(--color-sand-mid) 100%);
+}

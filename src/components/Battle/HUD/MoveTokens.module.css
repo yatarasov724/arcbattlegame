@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-sand-mid);
+  white-space: nowrap;
+}
+
+.tokens {
+  display: flex;
+  gap: 6px;
+}
+
+.token {
+  width: 28px;
+  height: 36px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+}
+
+.token:hover {
+  transform: scale(1.1);
+}
+
+.tokenActive {
+  filter: drop-shadow(0 0 4px rgba(205, 127, 50, 0.6));
+}
+
+.tokenUsed {
+  opacity: 0.2;
+  filter: grayscale(1);
+}
+
+.tokenBurning {
+  animation: tokenBurn 0.6s ease-out forwards;
+}
+
+.scroll {
+  width: 24px;
+  height: 32px;
+  background: linear-gradient(180deg, var(--color-parchment) 0%, var(--color-sand-mid) 100%);
+  border-radius: 3px 3px 2px 2px;
+  border: 1.5px solid var(--color-bronze-dark);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll::before,
+.scroll::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  height: 5px;
+  background: var(--color-bronze-dark);
+  border-radius: 2px;
+}
+
+.scroll::before { top: -3px; }
+.scroll::after { bottom: -3px; }
+
+.scrollGlyph {
+  font-size: 10px;
+  line-height: 1;
+  color: var(--color-bronze-dark);
+  opacity: 0.8;
+  font-family: var(--font-serif);
+}

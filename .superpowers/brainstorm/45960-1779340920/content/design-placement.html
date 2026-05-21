@@ -1,0 +1,142 @@
+<h2>Секция 3 — Экран расстановки на мобильном</h2>
+<p class="subtitle">Сетка занимает всю ширину, внизу — компактная панель выбора артефакта.</p>
+
+<div class="section">
+  <div class="split">
+
+    <!-- Ничего не выбрано -->
+    <div class="mockup">
+      <div class="mockup-header">Выбор артефакта</div>
+      <div class="mockup-body" style="background:#1a0f08;padding:10px;border-radius:6px;font-family:monospace;">
+
+        <!-- Заголовок -->
+        <div style="text-align:center;margin-bottom:8px;">
+          <div style="font-size:13px;color:#e8d5a3;letter-spacing:0.05em;">Подготовка экспедиции</div>
+          <div style="font-size:10px;color:#7a5c30;font-style:italic;">Разместите ваши ископаемые</div>
+        </div>
+
+        <!-- Кнопка ориентации — в углу над сеткой -->
+        <div style="display:flex;justify-content:flex-end;margin-bottom:4px;">
+          <div style="padding:5px 12px;background:rgba(44,24,16,0.6);border:1px solid #cd7f32;border-radius:14px;font-size:11px;color:#cd7f32;">↔ Горизонталь</div>
+        </div>
+
+        <!-- Сетка -->
+        <div style="display:grid;grid-template-columns:repeat(10,1fr);gap:2px;margin-bottom:10px;">
+          ${Array.from({length:100},(_, i)=>{
+            const placed=[11,12,13,14,33,34,35,56,57,75,76,77,78,79].includes(i);
+            return `<div style="background:${placed?'#3a2010':'#1e0f08'};height:30px;border:1px solid ${placed?'#cd7f32':'#2c1810'};border-radius:2px;"></div>`;
+          }).join('')}
+        </div>
+
+        <!-- Прогресс -->
+        <div style="display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:10px;">
+          <span style="font-size:10px;color:#7a5c30;">Размещено: 5/7</span>
+          ${Array.from({length:7},(_, i)=>`<div style="width:8px;height:8px;border-radius:50%;background:${i<5?'#cd7f32':'#4a3020'};"></div>`).join('')}
+        </div>
+
+        <!-- Нижняя панель артефактов -->
+        <div style="background:rgba(44,24,16,0.7);border:1px solid #7a5c30;border-radius:10px;padding:10px;">
+          <div style="font-size:9px;color:#7a5c30;text-align:center;margin-bottom:8px;letter-spacing:0.1em;">ВЫБЕРИ АРТЕФАКТ:</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+            <!-- Плезиозавр — размещён -->
+            <div style="background:rgba(44,24,16,0.3);border:1px solid #2c1810;border-radius:8px;padding:8px 4px;text-align:center;opacity:0.4;">
+              <div style="font-size:20px;">🦕</div>
+              <div style="font-size:9px;color:#4caf50;margin-top:2px;">✓ готово</div>
+            </div>
+            <!-- Древняя рыба — частично -->
+            <div style="background:#2c1810;border:1.5px solid #7a5c30;border-radius:8px;padding:8px 4px;text-align:center;">
+              <div style="font-size:20px;">🐟</div>
+              <div style="font-size:9px;color:#a08050;margin-top:2px;">ещё 1</div>
+            </div>
+            <!-- Аммонит — не начат -->
+            <div style="background:#2c1810;border:1.5px solid #7a5c30;border-radius:8px;padding:8px 4px;text-align:center;">
+              <div style="font-size:20px;">🌀</div>
+              <div style="font-size:9px;color:#a08050;margin-top:2px;">×3</div>
+            </div>
+            <!-- Мегалодонт — не начат -->
+            <div style="background:#2c1810;border:1.5px solid #7a5c30;border-radius:8px;padding:8px 4px;text-align:center;">
+              <div style="font-size:20px;">🦷</div>
+              <div style="font-size:9px;color:#a08050;margin-top:2px;">×1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Артефакт выбран, ставим на сетку -->
+    <div class="mockup">
+      <div class="mockup-header">Артефакт выбран — ставим</div>
+      <div class="mockup-body" style="background:#1a0f08;padding:10px;border-radius:6px;font-family:monospace;">
+
+        <div style="text-align:center;margin-bottom:8px;">
+          <div style="font-size:13px;color:#e8d5a3;letter-spacing:0.05em;">Подготовка экспедиции</div>
+          <div style="font-size:10px;color:#7a5c30;font-style:italic;">Тапни по сетке для размещения</div>
+        </div>
+
+        <!-- Кнопка ориентации — активная вертикаль -->
+        <div style="display:flex;justify-content:flex-end;margin-bottom:4px;">
+          <div style="padding:5px 12px;background:rgba(139,69,19,0.4);border:1px solid #cd7f32;border-radius:14px;font-size:11px;color:#e8d5a3;font-weight:600;">↕ Вертикаль</div>
+        </div>
+
+        <!-- Сетка с подсветкой -->
+        <div style="display:grid;grid-template-columns:repeat(10,1fr);gap:2px;margin-bottom:10px;">
+          ${Array.from({length:100},(_, i)=>{
+            const placed=[11,12,13,14,33,34,35,56,57,75,76,77,78,79].includes(i);
+            const preview=[42,52,62].includes(i);
+            const invalid=[20,30].includes(i);
+            return `<div style="background:${preview?'rgba(74,139,140,0.4)':invalid?'rgba(229,57,53,0.3)':placed?'#3a2010':'#1e0f08'};height:30px;border:1px solid ${preview?'#4a8b8c':invalid?'#e53935':placed?'#cd7f32':'#2c1810'};border-radius:2px;"></div>`;
+          }).join('')}
+        </div>
+
+        <div style="display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:10px;">
+          <span style="font-size:10px;color:#7a5c30;">Размещено: 5/7</span>
+          ${Array.from({length:7},(_, i)=>`<div style="width:8px;height:8px;border-radius:50%;background:${i<5?'#cd7f32':'#4a3020'};"></div>`).join('')}
+        </div>
+
+        <!-- Нижняя панель — аммонит выбран -->
+        <div style="background:rgba(44,24,16,0.7);border:1px solid #7a5c30;border-radius:10px;padding:10px;">
+          <div style="font-size:9px;color:#7a5c30;text-align:center;margin-bottom:8px;letter-spacing:0.1em;">ВЫБЕРИ АРТЕФАКТ:</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+            <div style="background:rgba(44,24,16,0.3);border:1px solid #2c1810;border-radius:8px;padding:8px 4px;text-align:center;opacity:0.4;">
+              <div style="font-size:20px;">🦕</div>
+              <div style="font-size:9px;color:#4caf50;margin-top:2px;">✓ готово</div>
+            </div>
+            <div style="background:#2c1810;border:1.5px solid #7a5c30;border-radius:8px;padding:8px 4px;text-align:center;">
+              <div style="font-size:20px;">🐟</div>
+              <div style="font-size:9px;color:#a08050;margin-top:2px;">ещё 1</div>
+            </div>
+            <!-- Аммонит выбран -->
+            <div style="background:rgba(74,139,140,0.2);border:2px solid #e6a817;border-radius:8px;padding:8px 4px;text-align:center;box-shadow:0 0 8px rgba(230,168,23,0.3);">
+              <div style="font-size:20px;">🌀</div>
+              <div style="font-size:9px;color:#e6a817;margin-top:2px;font-weight:600;">× 3 ✦</div>
+            </div>
+            <div style="background:#2c1810;border:1.5px solid #7a5c30;border-radius:8px;padding:8px 4px;text-align:center;">
+              <div style="font-size:20px;">🦷</div>
+              <div style="font-size:9px;color:#a08050;margin-top:2px;">×1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h3>Детали</h3>
+  <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">
+    <div style="padding:8px 12px;background:rgba(44,24,16,0.4);border-left:3px solid #cd7f32;border-radius:4px;font-size:12px;color:#d4b483;">
+      🔄 Кнопка ориентации — справа над сеткой, переключает ↔/↕ тапом (без клавиши R)
+    </div>
+    <div style="padding:8px 12px;background:rgba(44,24,16,0.4);border-left:3px solid #cd7f32;border-radius:4px;font-size:12px;color:#d4b483;">
+      ✓ Когда все артефакты типа размещены — карточка тускнеет и показывает «✓ готово»
+    </div>
+    <div style="padding:8px 12px;background:rgba(44,24,16,0.4);border-left:3px solid #cd7f32;border-radius:4px;font-size:12px;color:#d4b483;">
+      🎲 Кнопки «Случайно» / «Очистить» / «Начать» — под панелью, полная ширина
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:20px;text-align:center;">
+  <p style="font-size:12px;color:#7a5c30;">Выглядит хорошо? → Напишем спек и перейдём к плану реализации</p>
+</div>

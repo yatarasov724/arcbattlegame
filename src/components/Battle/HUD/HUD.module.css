@@ -1,0 +1,87 @@
+.hud {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 20px;
+  background: rgba(44, 24, 16, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  backdrop-filter: blur(4px);
+  flex-wrap: wrap;
+}
+
+.turnIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.turnDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-sand-dark);
+  transition: background var(--transition-mid);
+}
+
+.turnDotHuman {
+  background: var(--color-teal);
+  box-shadow: 0 0 8px var(--color-teal);
+  animation: scalePop 0.3s ease;
+}
+
+.turnDotAI {
+  background: var(--color-hit);
+  box-shadow: 0 0 8px var(--color-hit-glow);
+}
+
+.turnLabel {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--color-parchment);
+  letter-spacing: 0.03em;
+}
+
+.scores {
+  display: flex;
+  gap: 20px;
+}
+
+.scoreItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.scoreLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--color-sand-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.scoreValue {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--color-bronze);
+  font-weight: 700;
+  line-height: 1;
+  min-width: 40px;
+  text-align: center;
+}
+
+.message {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  color: var(--color-sand-light);
+  font-style: italic;
+  max-width: 260px;
+  text-align: center;
+  opacity: 0.9;
+  animation: fadeSlideIn 0.3s ease;
+}

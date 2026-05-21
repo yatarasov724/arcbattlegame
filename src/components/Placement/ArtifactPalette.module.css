@@ -1,0 +1,102 @@
+.palette {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 200px;
+  max-width: 240px;
+}
+
+.paletteTitle {
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  color: var(--color-sand-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.artifactCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--color-parchment);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius);
+  cursor: grab;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.artifactCard:active {
+  cursor: grabbing;
+}
+
+.artifactCard:hover {
+  border-color: var(--color-bronze);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+}
+
+.artifactCard.placed {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
+  filter: grayscale(0.5);
+}
+
+.artifactCard.placing {
+  border-color: var(--color-select);
+  box-shadow: 0 0 0 2px var(--color-select-glow);
+}
+
+.iconWrap {
+  width: 56px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  line-height: 1.2;
+}
+
+.sizeBlocks {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.sizeBlock {
+  width: 10px;
+  height: 10px;
+  background: var(--color-bronze);
+  border-radius: 1px;
+  opacity: 0.7;
+}
+
+.count {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-sand-dark);
+  opacity: 0.8;
+}
+
+.countPlaced {
+  color: var(--color-valid);
+  opacity: 1;
+}

@@ -1,0 +1,98 @@
+/* Dust cloud — particles fly out on excavation */
+@keyframes dustPuff {
+  0% { transform: translate(0, 0) scale(0); opacity: 0.9; }
+  60% { opacity: 0.6; }
+  100% { transform: translate(var(--dx, 12px), var(--dy, -16px)) scale(1.2); opacity: 0; }
+}
+
+/* Sand settling after excavation */
+@keyframes sandReveal {
+  0% { opacity: 0; transform: scale(0.85) rotate(-2deg); }
+  60% { transform: scale(1.05) rotate(1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Crack spreading on a hit */
+@keyframes crackSpread {
+  0% { clip-path: inset(50% 50% 50% 50%); opacity: 0; }
+  40% { opacity: 1; }
+  100% { clip-path: inset(0% 0% 0% 0%); opacity: 1; }
+}
+
+/* Glow pulse for sunk artifact */
+@keyframes artifactGlow {
+  0%, 100% { box-shadow: 0 0 6px 2px var(--color-bronze); }
+  50% { box-shadow: 0 0 18px 6px var(--color-select-glow), 0 0 32px 8px var(--color-bronze); }
+}
+
+/* Shake on sunk */
+@keyframes shakeCell {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px) rotate(-1deg); }
+  40% { transform: translateX(3px) rotate(1deg); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+
+/* Parchment unroll — tutorial / menu */
+@keyframes scrollUnroll {
+  0% { transform: scaleY(0); opacity: 0; transform-origin: top center; }
+  100% { transform: scaleY(1); opacity: 1; transform-origin: top center; }
+}
+
+/* Token burn — move token consumed */
+@keyframes tokenBurn {
+  0% { transform: scale(1); filter: brightness(1); opacity: 1; }
+  50% { transform: scale(1.2); filter: brightness(2) sepia(1); opacity: 0.8; }
+  100% { transform: scale(0); filter: brightness(3) sepia(1); opacity: 0; }
+}
+
+/* Fade slide in */
+@keyframes fadeSlideIn {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Scale pop */
+@keyframes scalePop {
+  0% { transform: scale(0.8); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Floating hieroglyphs (victory screen) */
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-120px) rotate(var(--spin, 20deg)); opacity: 0; }
+}
+
+/* Sand falling (defeat screen) */
+@keyframes sandFall {
+  0% { transform: translateY(-20px); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(60px); opacity: 0; }
+}
+
+/* Pulse for selected artifact */
+@keyframes selectPulse {
+  0%, 100% { box-shadow: 0 0 0 2px var(--color-select); }
+  50% { box-shadow: 0 0 0 4px var(--color-select), 0 0 12px var(--color-select-glow); }
+}
+
+/* Typing cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Spin for loading */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

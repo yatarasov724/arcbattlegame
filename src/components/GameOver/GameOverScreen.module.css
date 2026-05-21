@@ -1,0 +1,234 @@
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.5s ease;
+}
+
+.screenVictory {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(205, 127, 50, 0.2) 0%, transparent 60%),
+    linear-gradient(170deg, #0e0a04 0%, #1c1208 50%, #0e0e08 100%);
+}
+
+.screenDefeat {
+  background:
+    radial-gradient(ellipse at 50% 70%, rgba(139, 0, 0, 0.15) 0%, transparent 60%),
+    linear-gradient(170deg, #0a0404 0%, #140808 50%, #0a0808 100%);
+}
+
+/* Floating particles for victory */
+.particle {
+  position: absolute;
+  font-size: 1.2rem;
+  pointer-events: none;
+  animation: floatUp 2s ease-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Sand particles for defeat */
+.sandGrain {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-sand-mid);
+  pointer-events: none;
+  animation: sandFall 2.5s ease-in forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.card {
+  position: relative;
+  z-index: 10;
+  padding: 48px 52px;
+  border-radius: var(--border-radius-lg);
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  animation: scalePop 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cardVictory {
+  background: linear-gradient(170deg, #e8d5a3 0%, #d4b483 50%, #c8a060 100%);
+  border: 2px solid var(--color-bronze);
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(205, 127, 50, 0.4);
+}
+
+.cardDefeat {
+  background: linear-gradient(170deg, #2a1a14 0%, #1a0e0a 100%);
+  border: 2px solid rgba(139, 0, 0, 0.5);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(139, 0, 0, 0.2);
+}
+
+.artifactReveal {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 12px;
+  animation: scalePop 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+
+.resultTitle {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  margin: 0 0 8px;
+  letter-spacing: 0.04em;
+}
+
+.resultTitleVictory {
+  color: var(--color-ink);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+}
+
+.resultTitleDefeat {
+  color: var(--color-parchment);
+}
+
+.resultSubtitle {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0 0 24px;
+}
+
+.resultSubtitleVictory {
+  color: var(--color-ink-light);
+}
+
+.resultSubtitleDefeat {
+  color: var(--color-sand-mid);
+}
+
+.divider {
+  width: 60%;
+  height: 1px;
+  margin: 0 auto 24px;
+}
+
+.dividerVictory {
+  background: linear-gradient(90deg, transparent, var(--color-bronze-dark), transparent);
+}
+
+.dividerDefeat {
+  background: linear-gradient(90deg, transparent, rgba(139, 0, 0, 0.5), transparent);
+}
+
+.scores {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.scoreItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.scoreLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.scoreLabelVictory { color: var(--color-sand-darkest); }
+.scoreLabelDefeat { color: var(--color-sand-dark); }
+
+.scoreValue {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.scoreValueVictory { color: var(--color-bronze-dark); }
+.scoreValueDefeat { color: var(--color-bronze); }
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.btnPrimary {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  padding: 11px 32px;
+  border-radius: 28px;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all var(--transition-mid);
+  width: 100%;
+  max-width: 240px;
+  letter-spacing: 0.03em;
+}
+
+.btnPrimaryVictory {
+  background: var(--color-teal-dark);
+  border-color: var(--color-teal);
+  color: var(--color-parchment);
+}
+
+.btnPrimaryVictory:hover {
+  background: var(--color-teal);
+  color: var(--color-ink);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btnPrimaryDefeat {
+  background: rgba(139, 0, 0, 0.3);
+  border-color: rgba(192, 57, 43, 0.6);
+  color: var(--color-parchment);
+}
+
+.btnPrimaryDefeat:hover {
+  background: rgba(192, 57, 43, 0.4);
+  transform: translateY(-1px);
+}
+
+.btnSecondary {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 7px 18px;
+  border-radius: 20px;
+  border: 1px solid;
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btnSecondaryVictory {
+  border-color: rgba(44, 24, 16, 0.3);
+  color: var(--color-ink-light);
+}
+
+.btnSecondaryVictory:hover { background: rgba(44, 24, 16, 0.08); }
+
+.btnSecondaryDefeat {
+  border-color: rgba(245, 230, 200, 0.2);
+  color: var(--color-sand-mid);
+}
+
+.btnSecondaryDefeat:hover { background: rgba(245, 230, 200, 0.06); }
+
+.flavor {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  font-style: italic;
+  margin-top: 20px;
+  line-height: 1.5;
+}
+
+.flavorVictory { color: var(--color-sand-darkest); opacity: 0.6; }
+.flavorDefeat { color: var(--color-sand-dark); opacity: 0.5; }

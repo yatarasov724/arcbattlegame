@@ -1,0 +1,92 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  user-select: none;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--color-sand-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  opacity: 0.85;
+}
+
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md), inset 0 0 0 1px rgba(255,255,255,0.05);
+  background: var(--color-sand-darkest);
+  gap: var(--grid-gap);
+  padding: var(--grid-gap);
+  position: relative;
+}
+
+.headerRow {
+  display: flex;
+  gap: var(--grid-gap);
+  padding-left: calc(var(--cell-size) + var(--grid-gap));
+}
+
+.headerCell {
+  width: var(--cell-size);
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-parchment);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.gridRow {
+  display: flex;
+  gap: var(--grid-gap);
+  align-items: center;
+}
+
+.rowLabel {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-parchment);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* Highlight AI board cells on hover when it's human's turn */
+.enemy .gridContainer {
+  border-color: var(--color-teal-dark);
+}
+
+.own .gridContainer {
+  border-color: var(--color-bronze-dark);
+}
+
+/* Multi-cell fossil overlay layer — renders full fossils spanning multiple cells */
+.fossilOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fossilOverlay svg {
+  position: absolute;
+  display: block;
+}

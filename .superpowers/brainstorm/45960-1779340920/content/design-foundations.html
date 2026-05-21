@@ -1,0 +1,65 @@
+<h2>Секция 1 — Общий фундамент</h2>
+<p class="subtitle">Базовые изменения, которые затронут все экраны</p>
+
+<div class="section">
+  <h3>Размер клеток на телефоне</h3>
+  <p class="subtitle">Сейчас 26px — маловато для пальца. Предлагаю 36px при ≤640px. 10×10 сетка = 362px — влезает на iPhone SE (375px).</p>
+
+  <div class="split" style="margin-top: 16px;">
+    <div class="mockup">
+      <div class="mockup-header">Сейчас — 26px клетки</div>
+      <div class="mockup-body">
+        <div style="display: grid; grid-template-columns: repeat(10, 26px); gap: 2px;">
+          ${Array.from({length: 100}, (_, i) => {
+            const colors = ['#2c1810','#2c1810','#2c1810','#c0392b','#2c1810','#2c1810','#7a9aaa','#2c1810','#2c1810','#2c1810'];
+            return `<div style="background:${colors[i%10]};width:26px;height:26px;border:1px solid #7a5c30;border-radius:2px;"></div>`;
+          }).join('')}
+        </div>
+        <p style="margin-top:8px;font-size:11px;color:#7a5c30;">😬 Палец перекрывает 2-3 клетки</p>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-header">Предложение — 36px клетки</div>
+      <div class="mockup-body">
+        <div style="display: grid; grid-template-columns: repeat(10, 36px); gap: 2px; overflow-x:auto;">
+          ${Array.from({length: 100}, (_, i) => {
+            const colors = ['#2c1810','#2c1810','#2c1810','#c0392b','#2c1810','#2c1810','#7a9aaa','#2c1810','#2c1810','#2c1810'];
+            return `<div style="background:${colors[i%10]};width:36px;height:36px;border:1px solid #7a5c30;border-radius:2px;"></div>`;
+          }).join('')}
+        </div>
+        <p style="margin-top:8px;font-size:11px;color:#4caf50;">✓ Палец попадает точно в клетку</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Что ещё меняется</h3>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(44,24,16,0.4);border:1px solid #7a5c30;border-radius:6px;">
+      <span style="font-size:18px;">⚡</span>
+      <div>
+        <div style="font-size:13px;color:#d4b483;font-weight:600;">touch-action: manipulation на клетках</div>
+        <div style="font-size:11px;color:#7a5c30;">Убирает 300ms задержку на iOS — тапы реагируют мгновенно</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(44,24,16,0.4);border:1px solid #7a5c30;border-radius:6px;">
+      <span style="font-size:18px;">🙈</span>
+      <div>
+        <div style="font-size:13px;color:#d4b483;font-weight:600;">Скрываем «(R — переключить)»</div>
+        <div style="font-size:11px;color:#7a5c30;">Клавиатуры нет — подсказка бессмысленна</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(44,24,16,0.4);border:1px solid #7a5c30;border-radius:6px;">
+      <span style="font-size:18px;">📱</span>
+      <div>
+        <div style="font-size:13px;color:#d4b483;font-weight:600;">Viewport meta уже стоит</div>
+        <div style="font-size:11px;color:#7a5c30;">index.html уже имеет width=device-width, ничего добавлять не надо</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:20px;text-align:center;">
+  <p style="font-size:12px;color:#7a5c30;">Это выглядит правильно? Скажи «да» — перейдём к дизайну экрана битвы.</p>
+</div>

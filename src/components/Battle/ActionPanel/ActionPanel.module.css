@@ -1,0 +1,121 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(44, 24, 16, 0.5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  min-width: 200px;
+}
+
+.panelTitle {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-sand-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.modeButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.modeBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--color-border);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--color-sand-mid);
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+}
+
+.modeBtn:hover:not(:disabled) {
+  border-color: var(--color-bronze);
+  color: var(--color-parchment);
+  background: rgba(205, 127, 50, 0.1);
+}
+
+.modeBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.modeBtnActive {
+  background: var(--color-bronze-dark) !important;
+  border-color: var(--color-bronze) !important;
+  color: var(--color-parchment) !important;
+  box-shadow: 0 0 8px rgba(205, 127, 50, 0.3);
+}
+
+.modeIcon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.directionPad {
+  display: grid;
+  grid-template-columns: repeat(3, 36px);
+  grid-template-rows: repeat(3, 36px);
+  gap: 3px;
+  animation: scalePop 0.2s ease;
+}
+
+.dirBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1.5px solid var(--color-border);
+  background: rgba(205, 127, 50, 0.1);
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--color-parchment);
+  transition: all var(--transition-fast);
+}
+
+.dirBtn:hover {
+  background: var(--color-bronze-dark);
+  border-color: var(--color-bronze);
+  transform: scale(1.1);
+}
+
+.dirCenter {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cancelBtn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(192, 57, 43, 0.4);
+  background: transparent;
+  color: var(--color-hit);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cancelBtn:hover {
+  background: rgba(192, 57, 43, 0.15);
+}
+
+.hint {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-sand-dark);
+  text-align: center;
+  max-width: 160px;
+  line-height: 1.4;
+  opacity: 0.8;
+}

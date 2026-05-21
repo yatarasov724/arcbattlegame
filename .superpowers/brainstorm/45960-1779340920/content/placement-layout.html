@@ -1,0 +1,57 @@
+<h2>Экран расстановки на мобильном</h2>
+<p class="subtitle">Сейчас: сетка и палитра артефактов рядом. На телефоне не помещаются — как их расположить?</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="palette-below" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 12px; background: #1a0f08; border-radius: 6px; font-family: monospace; color: #d4b483;">
+      <div style="font-size: 10px; color: #7a5c30; text-align: center; margin-bottom: 6px;">СЕТКА РАССТАНОВКИ</div>
+      <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 2px; margin-bottom: 10px;">
+        ${Array.from({length: 64}, () => `<div style="background: #2c1810; border: 1px solid #7a5c30; height: 22px; border-radius: 2px;"></div>`).join('')}
+      </div>
+      <div style="font-size: 10px; color: #7a5c30; text-align: center; margin-bottom: 6px;">↕ ГОРИЗОНТАЛЬ / ВЕРТИКАЛЬ</div>
+      <div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;">
+        <div style="background: #2c1810; border: 1.5px solid #cd7f32; border-radius: 8px; padding: 6px 12px; font-size: 11px; color: #cd7f32;">🦕 Плезиозавр</div>
+        <div style="background: #2c1810; border: 1.5px solid #7a5c30; border-radius: 8px; padding: 6px 12px; font-size: 11px; color: #a08050;">🐟 Древняя рыба</div>
+        <div style="background: #2c1810; border: 1.5px solid #7a5c30; border-radius: 8px; padding: 6px 12px; font-size: 11px; color: #a08050;">🌀 Аммонит</div>
+        <div style="background: #2c1810; border: 1.5px solid #7a5c30; border-radius: 8px; padding: 6px 12px; font-size: 11px; color: #a08050;">🦷 Мегалодонт</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>А — Палитра снизу</h3>
+      <p>Сетка сверху, кнопки выбора артефактов в ряд снизу. Переключение ориентации — кнопка рядом с палитрой.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Плюсы</h4><ul><li>Всё видно сразу</li><li>Большая сетка</li></ul></div>
+        <div class="cons"><h4>Минусы</h4><ul><li>Кнопки артефактов компактные</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="bottom-sheet" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 12px; background: #1a0f08; border-radius: 6px; font-family: monospace; color: #d4b483; position: relative;">
+      <div style="font-size: 10px; color: #7a5c30; text-align: center; margin-bottom: 6px;">СЕТКА РАССТАНОВКИ</div>
+      <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 2px; margin-bottom: 8px;">
+        ${Array.from({length: 64}, () => `<div style="background: #2c1810; border: 1px solid #7a5c30; height: 22px; border-radius: 2px;"></div>`).join('')}
+      </div>
+      <div style="background: #2c1810; border: 1px solid #cd7f32; border-radius: 12px; padding: 8px; font-size: 10px;">
+        <div style="width: 40px; height: 3px; background: #7a5c30; border-radius: 2px; margin: 0 auto 8px;"></div>
+        <div style="font-size: 10px; color: #cd7f32; margin-bottom: 6px;">ВЫБЕРИ АРТЕФАКТ:</div>
+        <div style="display: flex; gap: 4px;">
+          <div style="flex: 1; background: #3a1808; border: 1.5px solid #cd7f32; border-radius: 6px; padding: 8px 4px; text-align: center; font-size: 13px;">🦕<br><span style="font-size: 9px; color: #a08050;">×1</span></div>
+          <div style="flex: 1; background: #1e0f08; border: 1px solid #4a3020; border-radius: 6px; padding: 8px 4px; text-align: center; font-size: 13px;">🐟<br><span style="font-size: 9px; color: #a08050;">×2</span></div>
+          <div style="flex: 1; background: #1e0f08; border: 1px solid #4a3020; border-radius: 6px; padding: 8px 4px; text-align: center; font-size: 13px;">🌀<br><span style="font-size: 9px; color: #a08050;">×3</span></div>
+          <div style="flex: 1; background: #1e0f08; border: 1px solid #4a3020; border-radius: 6px; padding: 8px 4px; text-align: center; font-size: 13px;">🦷<br><span style="font-size: 9px; color: #a08050;">×1</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Б — Компактная панель снизу</h3>
+      <p>Панель выбора артефактов в виде «шторки» внизу — большие иконки с счётчиком оставшихся. Ориентация переключается тапом.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Плюсы</h4><ul><li>Большие тач-таргеты</li><li>Максимальная сетка</li><li>Привычный паттерн (как в iOS)</li></ul></div>
+        <div class="cons"><h4>Минусы</h4><ul><li>Занимает место под сеткой</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
