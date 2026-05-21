@@ -14,11 +14,9 @@ export function BattleScreen() {
 
   const [activeTab, setActiveTab] = useState<'human' | 'ai'>('ai');
 
-  // Auto-switch tabs when turn or action mode changes
+  // Auto-switch tabs only for user-initiated mode changes
   useEffect(() => {
-    if (state.turn === 'ai') {
-      setActiveTab('human');
-    } else if (state.actionMode === 'move') {
+    if (state.actionMode === 'move') {
       setActiveTab('human');
     } else if (state.turn === 'human' && state.actionMode === 'dig') {
       setActiveTab('ai');
