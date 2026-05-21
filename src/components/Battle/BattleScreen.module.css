@@ -178,7 +178,11 @@
 @media (max-width: 640px) {
   .screen {
     padding: 8px 10px;
-    gap: 8px;
+    gap: 5px;
+  }
+
+  .titleGroup {
+    display: none;
   }
 }
 
@@ -220,6 +224,7 @@
     flex-direction: column;
     align-items: center;
     flex-wrap: nowrap;
+    gap: 6px;
   }
 
   .centerPanel {
@@ -227,14 +232,27 @@
     width: 100%;
     padding-top: 0;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
+    align-items: stretch;
+    gap: 6px;
   }
 
   .log {
-    max-height: 80px;
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
     max-width: none;
-    width: 100%;
+    padding: 5px 8px;
+  }
+
+  .logTitle {
+    display: none;
+  }
+
+  .logEntries {
+    max-height: 30px;
+    overflow: hidden;
   }
 
   /* Hidden tab's grid section */

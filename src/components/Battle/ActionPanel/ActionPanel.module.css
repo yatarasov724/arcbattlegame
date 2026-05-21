@@ -119,3 +119,32 @@
   line-height: 1.4;
   opacity: 0.8;
 }
+
+@media (max-width: 640px) {
+  .panel {
+    padding: 8px 10px;
+    gap: 6px;
+    min-width: 0;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .panelTitle {
+    display: none;
+  }
+
+  .modeBtn {
+    padding: 6px 10px;
+    flex-direction: row;
+    gap: 4px;
+    font-size: 0.72rem;
+  }
+
+  .modeIcon {
+    font-size: 1rem;
+  }
+
+  .hint {
+    display: none;
+  }
+}

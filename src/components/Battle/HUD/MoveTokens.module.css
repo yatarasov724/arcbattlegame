@@ -76,3 +76,19 @@
   opacity: 0.8;
   font-family: var(--font-serif);
 }
+
+@media (max-width: 640px) {
+  .token {
+    width: 20px;
+    height: 26px;
+  }
+
+  .scroll {
+    width: 16px;
+    height: 22px;
+  }
+
+  .label {
+    font-size: 0.65rem;
+  }
+}

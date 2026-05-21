@@ -85,3 +85,31 @@
   opacity: 0.9;
   animation: fadeSlideIn 0.3s ease;
 }
+
+@media (max-width: 640px) {
+  .hud {
+    padding: 6px 10px;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+
+  .message {
+    display: none;
+  }
+
+  .turnLabel {
+    font-size: 0.75rem;
+  }
+
+  .scores {
+    gap: 10px;
+  }
+
+  .scoreValue {
+    font-size: 0.9rem;
+  }
+
+  .scoreLabel {
+    font-size: 0.55rem;
+  }
+}
