@@ -14,14 +14,14 @@ export function BattleScreen() {
 
   const [activeTab, setActiveTab] = useState<'human' | 'ai'>('ai');
 
-  // Auto-switch tabs only for user-initiated mode changes
+  // Switch tabs only when action mode changes, not when turn changes
   useEffect(() => {
     if (state.actionMode === 'move') {
       setActiveTab('human');
-    } else if (state.turn === 'human' && state.actionMode === 'dig') {
+    } else {
       setActiveTab('ai');
     }
-  }, [state.turn, state.actionMode]);
+  }, [state.actionMode]);
 
   const movableArtifactIds =
     state.actionMode === 'move'
