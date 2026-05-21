@@ -55,6 +55,10 @@
   --border-radius: 4px;
   --border-radius-lg: 8px;
 
+  /* ArtifactOverlay positioning: offset from container origin to first cell */
+  --grid-col-start: calc(var(--grid-gap) + var(--cell-size) + var(--grid-gap));
+  --grid-row-start: calc(var(--grid-gap) + 18px + var(--grid-gap));
+
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(44, 24, 16, 0.3);
   --shadow-md: 0 4px 12px rgba(44, 24, 16, 0.4);
@@ -79,12 +83,8 @@
   :root {
     --cell-size: 34px;
     --cell-size-sm: 22px;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --cell-size: 26px;
-    --cell-size-sm: 20px;
+    /* Labels and header are hidden at this breakpoint, so start directly at padding */
+    --grid-col-start: var(--grid-gap);
+    --grid-row-start: var(--grid-gap);
   }
 }

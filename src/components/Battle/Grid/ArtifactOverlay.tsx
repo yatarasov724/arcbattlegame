@@ -27,8 +27,8 @@ export function ArtifactOverlay({ artifacts, isOwn, validMoveGhosts = [], onGhos
     const rowSpan = maxRow - minRow + 1;
     return {
       colSpan, rowSpan,
-      left:   `calc(${G} + ${CS} + ${G} + ${minCol} * (${CS} + ${G}))`,
-      top:    `calc(${G} + 18px + ${G} + ${minRow} * (${CS} + ${G}))`,
+      left:   `calc(var(--grid-col-start) + ${minCol} * (${CS} + ${G}))`,
+      top:    `calc(var(--grid-row-start) + ${minRow} * (${CS} + ${G}))`,
       width:  `calc(${colSpan} * ${CS} + ${Math.max(colSpan - 1, 0)} * ${G})`,
       height: `calc(${rowSpan} * ${CS} + ${Math.max(rowSpan - 1, 0)} * ${G})`,
     };
